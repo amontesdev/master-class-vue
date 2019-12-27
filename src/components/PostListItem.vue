@@ -33,7 +33,8 @@ export default {
       return SourceData.users[this.post.userId]
     },
     userPostsCount () {
-      return Object.keys(this.user.posts).length
+      const postNumber = this.user.posts ? Object.keys(this.user.posts).length : 0
+      return postNumber
     }
   }
 }
