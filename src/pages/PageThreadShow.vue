@@ -5,22 +5,10 @@
       <PostList 
         :posts="posts"
       />
-      <form @submit.prevent="addToPost">
-        <div class="form-group">
-          <textarea 
-          name="" 
-          id="" 
-          cols="30" 
-          rows="10" 
-          class="form-input"
-          v-model="newPostText"
-          >
-          </textarea>
-        </div>
-        <div class="form-actions">
-          <button class="btn btn-blue">Submit post</button>
-        </div>
-      </form>
+      <PostEditor 
+      @savePost="addPost"
+      :threadId="id"
+      />
     </div>
   </div>
  
@@ -30,9 +18,11 @@
 import Vue from 'vue'
 import sourceData from '@/data.json'
 import PostList from 'comp/PostList'
+import PostEditor from 'comp/PostEditor'
 export default {
   components: {
-    PostList
+    PostList,
+    PostEditor
   },
   props: {
     id: {
@@ -44,8 +34,7 @@ export default {
     return {
       thread: sourceData.threads[this.id],
       // posts: sourceData.posts,
-      users: sourceData.users,
-      newPostText: ''
+      users: sourceData.users
     }
   },
   computed: {
@@ -56,20 +45,12 @@ export default {
     }
   },
   methods: {
-    addToPost () {
-      const postId = 'greatPost' + Math.random()
-      const post = {
-        text: this.newPostText,
-        publishedAt: Math.floor(Date.now() / 1000),
-        threadId: this.id,
-        userId: '38St7Q8Zi2N1SPa5ahzssq9kbyp1',
-        '.key': postId
-      }
+    addPost ({post}) {
+      const postId = post['.key']
       this.$set(sourceData.posts, postId, post)
       this.$set(this.thread.posts, postId, postId)
       this.users[post.userId].posts = this.users[post.userId].posts ? this.users[post.userId].posts : []
       this.$set(this.users[post.userId].posts, postId, postId)
-      this.newPostText = ''
     }
   }
 }
