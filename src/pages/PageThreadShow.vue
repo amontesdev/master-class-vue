@@ -2,6 +2,9 @@
   <div class="col-large push-top">
     <div>
       <h2>{{thread.title}}</h2>
+      <p>
+        By <a href="" class="link-unstyled">Andres</a>, <BaseDate :timestamp="thread.publishedAt" />
+      </p>
       <PostList 
         :posts="posts"
       />

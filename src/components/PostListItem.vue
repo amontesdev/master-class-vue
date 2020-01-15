@@ -15,7 +15,9 @@
           </div>
         </div>
         <div class="post-date text-faded">
-          {{post.publishedAt}}
+          <BaseDate
+          :timestamp="post.publishedAt"
+          />
         </div>
   </div>
 </template>

@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import BaseDate from 'comp/BaseDate'
+
+Vue.component('BaseDate', BaseDate)
 
 Vue.config.productionTip = false
 
