@@ -1,7 +1,7 @@
 <template>
   <div class="col-full">
     <h1>Welcome to the forum</h1>
-    <ThreadList :threads="threads"/>
+    <ForumList :forums="forums"/>
   </div>
  
 </template>
@@ -9,16 +9,16 @@
 <script>
 
 import sourceData from '@/data'
-import ThreadList from 'comp/ThreadList'
+import ForumList from 'comp/ForumList'
 
 export default {
   name: 'HelloWorld',
   components: {
-    ThreadList
+    ForumList
   },
   data () {
     return {
-      threads: Object.values(sourceData.threads),
+      forums: Object.values(sourceData.forums),
       posts: sourceData.posts,
       users: sourceData.users
     }
