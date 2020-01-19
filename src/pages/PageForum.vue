@@ -35,7 +35,7 @@ export default {
     },
     threads () {
       return Object.values(SourceData.threads)
-      .filter(thread => thread.id === this.id)
+      .filter(thread => thread.forumId === this.id)
     }
   }
 }
